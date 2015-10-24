@@ -43,6 +43,10 @@ app.config = function (ctrl) {
 
 app.controller = function () {
     this.token = localStorage.getItem("token");
+
+    this.initialize = function () {
+        
+    }.bind(this);
 }
 
 app.view = function (ctrl) {
