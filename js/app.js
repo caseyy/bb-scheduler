@@ -7,8 +7,9 @@ app.config = function (ctrl) {
         if (!isInitialized) {
             var code = null;
             if (window.location.href.match(/\?code=(.*)/))
-              code = window.location.href.match(/\?code=(.*)/)[1];
+                code = window.location.href.match(/\?code=(.*)/)[1];
 
+            console.log(code);
             if (ctrl.token) {
                 m.request({
                     method: "GET",
@@ -23,9 +24,9 @@ app.config = function (ctrl) {
                 });
             }
             else if (code) {
-                $.getJSON('http://clockworkapp.azurewebites.net/authenticate/'+code, function(data) {
+                /*$.getJSON('http://clockworkapp.azurewebites.net/authenticate/'+code, function(data) {
                     console.log(data.token);
-                });
+                });*/
             }
             else {
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
