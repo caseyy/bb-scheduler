@@ -6,7 +6,7 @@ app.config = function (ctrl) {
 
         if (!isInitialized) {
             if (ctrl.token) {
-                m.request({
+                /*m.request({
                     method: "GET",
                     url: "https://api.github.com/user",
                     config: function (xhr, options) {
@@ -16,7 +16,7 @@ app.config = function (ctrl) {
                     console.log(result)
                 }, function (error) {
                     Materialize.toast(error.message, 4000);
-                });
+                });*/
             }
             else if (ctrl.code) {
                 /*$.getJSON('http://clockworkapp.azurewebites.net/authenticate/'+code, function(data) {
