@@ -5,11 +5,6 @@ app.config = function (ctrl) {
         var el = $(element);
 
         if (!isInitialized) {
-            var code = null;
-            if (window.location.href.match(/\?code=(.*)/))
-                code = window.location.href.match(/\?code=(.*)/)[1];
-
-            console.log(code);
             if (ctrl.token) {
                 m.request({
                     method: "GET",
@@ -23,7 +18,7 @@ app.config = function (ctrl) {
                     Materialize.toast(error.message, 4000);
                 });
             }
-            else if (code) {
+            else if (ctrl.code) {
                 /*$.getJSON('http://clockworkapp.azurewebites.net/authenticate/'+code, function(data) {
                     console.log(data.token);
                 });*/
@@ -35,8 +30,20 @@ app.config = function (ctrl) {
     }
 }
 
+function getQueryVariable(variable)
+{
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+}
+
 app.controller = function () {
     this.token = localStorage.getItem("token");
+    this.code = getQueryVariable("code");
 }
 
 app.view = function (ctrl) {
