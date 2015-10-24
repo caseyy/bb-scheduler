@@ -23,7 +23,7 @@ app.config = function (ctrl) {
                 });
             }
             else if (code) {
-                $.getJSON('http://clockworkapp.azurewebites.net/authenticate/'+code, function(data) {
+                $.getJSON('https://clockworkapp.azurewebsites.net/authenticate/'+code, function(data) {
                     console.log(data.token);
                 });
             }
