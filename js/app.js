@@ -24,7 +24,14 @@ app.config = function (ctrl) {
             }
             else if (code) {
                 $.getJSON('https://clockworkapp.azurewebsites.net/authenticate/'+code, function(data) {
-                    console.log(data.token);
+                    if (data.token) {
+                        this.token = data.token;
+                        localStorage.setItem("token", data.token);
+                        this.initialize();
+                    }
+                    else {
+                        Materialize.toast('Incorrect passphrase', 4000);
+                    }
                 });
             }
             else {
