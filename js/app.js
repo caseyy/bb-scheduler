@@ -57,7 +57,7 @@ app.controller = function () {
             if (error.message == "Bad credentials")
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
             else
-                Materialize.toast(error.message", 4000);
+                Materialize.toast(error.message, 4000);
         });
     }.bind(this);
 }
