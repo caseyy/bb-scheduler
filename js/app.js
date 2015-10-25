@@ -36,7 +36,7 @@ app.controller = function () {
     this.user;
 
     this.initialize = function () {
-        m.render(document.body), calendar.view(this));
+        m.render(document.body, calendar.view(this));
     }.bind(this);
 
     this.getUser = function () {
