@@ -10,27 +10,17 @@ app.config = function (ctrl) {
                 code = window.location.href.match(/\?code=(.*)/)[1];
 
             if (ctrl.token) {
-                m.request({
-                    method: "GET",
-                    url: "https://api.github.com/user",
-                    config: function (xhr, options) {
-                        xhr.setRequestHeader("Authorization", "Token " + ctrl.token);
-                    }
-                }).then(function (result) {
-                    console.log(result)
-                }, function (error) {
-                    Materialize.toast(error.message, 4000);
-                });
+                ctrl.getUser();
             }
             else if (code) {
                 $.getJSON('https://clockworkapp.azurewebsites.net/authenticate/'+code, function(data) {
                     if (data.token) {
-                        this.token = data.token;
+                        ctrl.token = data.token;
                         localStorage.setItem("token", data.token);
-                        this.initialize();
+                        ctrl.getUser();
                     }
                     else {
-                        Materialize.toast('Incorrect passphrase', 4000);
+                        Materialize.toast("Error", 4000);
                     }
                 });
             }
@@ -43,9 +33,29 @@ app.config = function (ctrl) {
 
 app.controller = function () {
     this.token = localStorage.getItem("token");
+    this.user;
 
     this.initialize = function () {
-        
+        m.render(document.body), calendar.view(this));
+    }.bind(this);
+
+    this.getUser = function () {
+        m.request({
+            method: "GET",
+            url: "https://api.github.com/user",
+            config: function (xhr, options) {
+                xhr.setRequestHeader("Authorization", "Token " + ctrl.token);
+            }
+        }).then(function (result) {
+            if (result.login) {
+                this.user = result;
+                this.initialize();
+            }
+            else
+                $("#gh-login").transition({ opacity: 1, delay: 1000 });
+        }, function (error) {
+            Materialize.toast("Error", 4000);
+        });
     }.bind(this);
 }
 
