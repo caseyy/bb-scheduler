@@ -44,7 +44,7 @@ app.controller = function () {
             method: "GET",
             url: "https://api.github.com/user",
             config: function (xhr, options) {
-                xhr.setRequestHeader("Authorization", "Token " + ctrl.token);
+                xhr.setRequestHeader("Authorization", "Token " + this.token);
             }
         }).then(function (result) {
             if (result.login) {
