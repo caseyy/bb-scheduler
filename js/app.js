@@ -54,6 +54,7 @@ app.controller = function () {
             else
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
         }, function (error) {
+          console.log(error);
             Materialize.toast("Error", 4000);
         });
     }.bind(this);
