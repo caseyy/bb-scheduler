@@ -58,6 +58,7 @@ app.controller = function () {
                 xhr.setRequestHeader("Authorization", "Token " + this.token);
             }
         }).then(function (result) {
+          console.log(result);
             if (result.login) {
                 this.user = result;
                 this.getRepos();
@@ -69,6 +70,7 @@ app.controller = function () {
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
             }
         }, function (error) {
+          console.log(error);
             this.token = null;
             localStorage.removeItem("token");
             $("#gh-login").css("display", "block");
