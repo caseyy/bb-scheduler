@@ -103,7 +103,7 @@ app.controller = function () {
         }).then(function (result) {
             this.commits = {};
             for (var i in result) {
-                var date = $.format.date(result[i].commit.author.date, "MM-dd-yyyy");
+                var date = jQuery.format.date(result[i].commit.author.date, "MM-dd-yyyy");
                 this.commits[date] = result[i].commit.message;
             }
             this.initalize();
