@@ -41,8 +41,6 @@ app.controller = function () {
     this.token = localStorage.getItem("token");
     this.user;
     this.monthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    this.month = m.prop("January");
-    this.year = m.prop(2015);
     this.yearList = [];
     this.calendar;
 
@@ -64,15 +62,10 @@ app.controller = function () {
                 this.getRepos();
             }
             else {
-                this.token = null;
-                localStorage.removeItem("token");
                 $("#gh-login").css("display", "block");
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
             }
         }, function (error) {
-          console.log(error);
-            this.token = null;
-            localStorage.removeItem("token");
             $("#gh-login").css("display", "block");
             $("#gh-login").transition({ opacity: 1, delay: 1000 });
         });
