@@ -112,7 +112,7 @@ app.controller = function () {
                     sha: result[i].sha,
                     date: $.format.date(result[i].commit.author.date, "MM-dd-yyyy"),
                     message: result[i].commit.message,
-                    created: result[i].commit.comitter.date;
+                    created: result[i].commit.committer.date;
                     user: {
                         id: result[i].author.id,
                         avatar: result[i].author.avatar_url,
