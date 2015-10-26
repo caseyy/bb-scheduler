@@ -44,7 +44,7 @@ app.controller = function () {
     this.calendar;
     this.repos = [];
     this.repo;
-    this.commits = [];
+    this.commits = {};
 
     this.initialize = function () {
         m.render(document.getElementById("wrapper"), calendar.view(this));
@@ -101,9 +101,10 @@ app.controller = function () {
                 xhr.setRequestHeader("Authorization", "Token " + this.token);
             }.bind(this)
         }).then(function (result) {
-            this.commits = [];
+            this.commits = {};
             for (var i in result) {
-                this.commits.push({ $.format.date(result[i].commit.author.date, "MM-dd-yyyy"): result[i].commit.message });
+                var date = $.format.date(result[i].commit.author.date, "MM-dd-yyyy")
+                this.commits[date] = result[i].commit.message;
             }
             this.initalize();
         }.bind(this), function (error) {
