@@ -107,7 +107,7 @@ app.controller = function () {
                 var date = $.format.date(result[i].commit.author.date, "MM-dd-yyyy");
                 this.commits[date] = result[i].commit.message;
             }
-            this.initalize();
+            this.initialize();
         }.bind(this), function (error) {
             Materialize.toast(error.message, 4000);
         });
