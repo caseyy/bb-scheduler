@@ -10,11 +10,15 @@ app.config = function (ctrl) {
               ctrl.yearList.push(today.getFullYear() + i);
 
             var code = null;
-            if (window.location.href.match(/\?code=(.*)/))
+            if (window.location.href.match(/\?code=(.*)/)) {
                 code = window.location.href.match(/\?code=(.*)/)[1];
+                var url = window.location.href;
+                var value = url.substring(url.lastIndexOf('/') + 1);
+                value  = value.split("?")[0];
+                window.history.pushState("object or string", "Title", "/ "+ value );
+            }
 
-ctrl.initialize();
-            /*if (ctrl.token) {
+            if (ctrl.token) {
                 ctrl.getUser();
             }
             else if (code) {
@@ -32,7 +36,7 @@ ctrl.initialize();
             else {
                 $("#gh-login").css("display", "block");
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
-            }*/
+            }
         }
     }
 }
