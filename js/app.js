@@ -13,7 +13,8 @@ app.config = function (ctrl) {
             if (window.location.href.match(/\?code=(.*)/))
                 code = window.location.href.match(/\?code=(.*)/)[1];
 
-            if (ctrl.token) {
+ctrl.initialize();
+            /*if (ctrl.token) {
                 ctrl.getUser();
             }
             else if (code) {
@@ -31,7 +32,7 @@ app.config = function (ctrl) {
             else {
                 $("#gh-login").css("display", "block");
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
-            }
+            }*/
         }
     }
 }
@@ -44,7 +45,7 @@ app.controller = function () {
     this.calendar;
     this.repos = [];
     this.repo;
-    this.commits = {};
+    this.commits = [];
 
     this.initialize = function () {
         m.render(document.getElementById("wrapper"), calendar.view(this));
@@ -101,11 +102,21 @@ app.controller = function () {
                 xhr.setRequestHeader("Authorization", "Token " + this.token);
             }.bind(this)
         }).then(function (result) {
-            this.commits = {};
+            this.commits = [];
             for (var i in result) {
-                console.log(result[i]);
-                var date = $.format.date(result[i].commit.author.date, "MM-dd-yyyy");
-                this.commits[date] = result[i].commit.message;
+                this.commits.push({
+                    sha: result[i].sha,
+                    date: $.format.date(result[i].commit.author.date, "MM-dd-yyyy"),
+                    message: result[i].commit.message,
+                    created: result[i].commit.comitter.date;
+                    user: {
+                        id: result[i].author.id,
+                        avatar: result[i].author.avatar_url,
+                        login: result[i].author.login,
+                        name: result[i].commit.author.name,
+                        email: result[i].commit.author.email
+                    }
+                });
             }
             this.initialize();
         }.bind(this), function (error) {
