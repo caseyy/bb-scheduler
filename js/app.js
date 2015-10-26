@@ -43,7 +43,7 @@ app.controller = function () {
     this.monthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     this.yearList = [];
     this.calendar;
-
+    this.repos = [];
     this.initialize = function () {
         m.render(document.body, calendar.view(this));
     }.bind(this);
