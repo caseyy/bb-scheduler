@@ -18,6 +18,7 @@ app.config = function (ctrl) {
             }
             else if (code) {
                 $.getJSON('https://clockworkapp.azurewebsites.net/authenticate/'+code, function(data) {
+                  console.log(data);
                     if (data.token) {
                         ctrl.token = data.token;
                         localStorage.setItem("token", data.token);
