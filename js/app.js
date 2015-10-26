@@ -96,7 +96,7 @@ app.controller = function () {
     this.getCommits = function () {
         m.request({
             method: "GET",
-            url: "https://api.github.com/repos" + this.repo.owner.login + "/" + this.repo.name + "/commits",
+            url: "https://api.github.com/repos/" + this.repo.owner.login + "/" + this.repo.name + "/commits",
             config: function (xhr, options) {
                 xhr.setRequestHeader("Authorization", "Token " + this.token);
             }.bind(this)
