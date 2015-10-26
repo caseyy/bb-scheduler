@@ -11,7 +11,7 @@ calendar.config = function (ctrl) {
   								console.log( key + ' = ' + dateProperties[ key ] );
   							}
   						},
-  						caldata : []
+  						caldata : ctrl.commits
   					});
             ctrl.updateMonthYear();
             $( '#custom-next' ).on( 'click', function() {
