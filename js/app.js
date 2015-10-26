@@ -15,7 +15,7 @@ app.config = function (ctrl) {
                 var url = window.location.href;
                 var value = url.substring(url.lastIndexOf('/') + 1);
                 value  = value.split("?")[0];
-                window.history.pushState("object or string", "Title", "/ "+ value );
+                window.history.pushState("", "Clockwork", "/" + value );
             }
 
             if (ctrl.token) {
