@@ -29,6 +29,7 @@ app.config = function (ctrl) {
                 });
             }
             else {
+                $("#gh-login").css("display", "block");
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
             }
         }
@@ -63,11 +64,13 @@ app.controller = function () {
             else {
                 this.token = null;
                 localStorage.removeItem("token");
+                $("#gh-login").css("display", "block");
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
             }
         }, function (error) {
             this.token = null;
             localStorage.removeItem("token");
+            $("#gh-login").css("display", "block");
             $("#gh-login").transition({ opacity: 1, delay: 1000 });
         });
     }.bind(this);
