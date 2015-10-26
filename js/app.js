@@ -54,7 +54,7 @@ app.controller = function () {
             url: "https://api.github.com/user",
             config: function (xhr, options) {
                 xhr.setRequestHeader("Authorization", "Token " + this.token);
-            }
+            }.bind(this)
         }).then(function (result) {
           console.log(result);
             if (result.login) {
@@ -65,7 +65,7 @@ app.controller = function () {
                 $("#gh-login").css("display", "block");
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
             }
-        }, function (error) {
+        }.bind(this), function (error) {
             $("#gh-login").css("display", "block");
             $("#gh-login").transition({ opacity: 1, delay: 1000 });
         });
@@ -77,10 +77,10 @@ app.controller = function () {
             url: "https://api.github.com/user/repos",
             config: function (xhr, options) {
                 xhr.setRequestHeader("Authorization", "Token " + this.token);
-            }
+            }.bind(this)
         }).then(function (result) {
             console.log(result);
-        }, function (error) {
+        }.bind(this), function (error) {
             Materialize.toast(error.message, 4000);
         });
     }.bind(this);
