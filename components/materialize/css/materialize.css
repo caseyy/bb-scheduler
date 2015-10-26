@@ -5909,12 +5909,13 @@ button.btn-floating {
   background-color: #fff;
   margin: 0;
   display: none;
-  min-width: 100px;
-  max-height: 650px;
+  min-width: 70px;
+  max-height: 260px;
   overflow-y: auto;
   opacity: 0;
   position: absolute;
   z-index: 999;
+  -webkit-overflow-scrolling: touch;
   will-change: width, height; }
   .dropdown-content li {
     clear: both;
@@ -5928,7 +5929,7 @@ button.btn-floating {
       background-color: #eee; }
     .dropdown-content li > a, .dropdown-content li > span {
       font-size: 1.2rem;
-      color: #26a69a;
+      color: #1976d2;
       display: block;
       padding: 1rem 1rem; }
     .dropdown-content li > a > i {

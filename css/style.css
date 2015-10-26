@@ -18,9 +18,59 @@ body {
 #gh-login {
     margin-top: 20px;
     opacity: 0;
+    display: none;
 }
 
 #gh-login a {
     width: 100%;
     max-width: 436px;
+}
+
+#cal-logo {
+    width: 275px;
+    max-width: 100%;
+    display: inline-block;
+}
+
+#action-bar {
+    padding: 10px 20px;
+}
+
+#custom-month-year {
+    float: right;
+    display: inline-block;
+}
+
+#custom-month-year .btn-flat {
+    color: #1976d2;
+}
+
+#custom-month-year #custom-month {
+    width: 100px;
+    text-align: center;
+    padding: 0;
+}
+
+#custom-month-year #custom-year {
+    width: 40px;
+    text-align: center;
+    padding: 0;
+}
+
+#custom-month-year .btn-small {
+    width: 40px;
+    padding: 0 12px;
+}
+
+#custom-month-year .btn-flat i {
+    margin: 0;
+}
+
+@media screen and (max-width: 550px) {
+    .fc-calendar-container {
+        top: 25px;
+    }
+    #custom-month-year {
+        float: left;
+    }
 }

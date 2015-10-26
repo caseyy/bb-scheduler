@@ -5,6 +5,10 @@ app.config = function (ctrl) {
         var el = $(element);
 
         if (!isInitialized) {
+            var today = new Date();
+            for (var i = 0; i < 5; i++)
+              ctrl.yearList.push(today.getFullYear() + i);
+
             var code = null;
             if (window.location.href.match(/\?code=(.*)/))
                 code = window.location.href.match(/\?code=(.*)/)[1];
@@ -34,6 +38,11 @@ app.config = function (ctrl) {
 app.controller = function () {
     this.token = localStorage.getItem("token");
     this.user;
+    this.monthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    this.month = m.prop("January");
+    this.year = m.prop(2015);
+    this.yearList = [];
+    this.calendar;
 
     this.initialize = function () {
         m.render(document.body, calendar.view(this));
@@ -49,7 +58,7 @@ app.controller = function () {
         }).then(function (result) {
             if (result.login) {
                 this.user = result;
-                this.initialize();
+                this.getRepos();
             }
             else
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
@@ -59,6 +68,41 @@ app.controller = function () {
             else
                 Materialize.toast(error.message, 4000);
         });
+    }.bind(this);
+
+    this.getRepos = function () {
+        m.request({
+            method: "GET",
+            url: "https://api.github.com/user/repos",
+            config: function (xhr, options) {
+                xhr.setRequestHeader("Authorization", "Token " + this.token);
+            }
+        }).then(function (result) {
+            console.log(result);
+        }, function (error) {
+            Materialize.toast(error.message, 4000);
+        });
+    }.bind(this);
+
+    this.goToPreviousMonth = function () {
+        $( '#calendar' ).calendario('gotoPreviousMonth', this.updateMonthYear);
+    }.bind(this);
+
+    this.goToNextMonth = function () {
+        $( '#calendar' ).calendario('gotoNextMonth', this.updateMonthYear);
+    }.bind(this);
+
+    this.updateMonthYear = function () {
+        $("#custom-month").text( this.calendar.getMonthName() );
+        $("#custom-year").text( this.calendar.getYear() );
+        $("#dropdown1 li").removeClass("active");
+        $("#dropdown1 li#" + this.calendar.getMonthName()).addClass("active");
+        $("#dropdown2 li").removeClass("active");
+        $("#dropdown2 li#" + this.calendar.getYear()).addClass("active");
+    }.bind(this);
+
+    this.showMonth = function (item) {
+      this.calendar.gotoMonth(item, this.calendar.getYear(), this.updateMonthYear())
     }.bind(this);
 }
 
