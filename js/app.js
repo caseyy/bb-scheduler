@@ -79,7 +79,8 @@ app.controller = function () {
                 xhr.setRequestHeader("Authorization", "Token " + this.token);
             }.bind(this)
         }).then(function (result) {
-            console.log(result);
+            this.repos = result;
+            m.render(document.body, repo.view(this));
         }.bind(this), function (error) {
             Materialize.toast(error.message, 4000);
         });

@@ -1,17 +1,9 @@
 var repo = {};
 
-repo.config = function (ctrl) {
-    return function (element, isInitialized) {
-        var el = $(element);
-
-        if (!isInitialized) {
-
-        }
-    }
-}
-
 repo.view = function (ctrl) {
-    return [
-    
-    ]
+    return m(".collection", [
+        ctrl.repos.map(function (item) {
+            return m("a.collection-item[href='javascript:void(0)']", item);
+        }
+    ]);
 }
