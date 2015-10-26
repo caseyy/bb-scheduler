@@ -43,9 +43,11 @@ app.controller = function () {
     this.yearList = [];
     this.calendar;
     this.repos = [];
+    this.repo;
+    this.events = [];
 
     this.initialize = function () {
-        m.render(document.getElementById("wrapper"), repo.view(this));
+        m.render(document.getElementById("wrapper"), calendar.view(this));
     }.bind(this);
 
     this.getUser = function () {
@@ -79,7 +81,6 @@ app.controller = function () {
                 xhr.setRequestHeader("Authorization", "Token " + this.token);
             }.bind(this)
         }).then(function (result) {
-            console.log(result);
             this.repos = result;
             m.render(document.getElementById("wrapper"), repo.view(this));
         }.bind(this), function (error) {
@@ -87,12 +88,23 @@ app.controller = function () {
         });
     }.bind(this);
 
-    this.goToPreviousMonth = function () {
-        $( '#calendar' ).calendario('gotoPreviousMonth', this.updateMonthYear);
+    this.setRepo = function(item) {
+        this.repo = item;
+        this.getCommits();
     }.bind(this);
 
-    this.goToNextMonth = function () {
-        $( '#calendar' ).calendario('gotoNextMonth', this.updateMonthYear);
+    this.getCommits = function () {
+        m.request({
+            method: "GET",
+            url: "https://api.github.com/repos" + this.repo.owner.login + "/" + this.repo.name + "/commits",
+            config: function (xhr, options) {
+                xhr.setRequestHeader("Authorization", "Token " + this.token);
+            }.bind(this)
+        }).then(function (result) {
+            console.log(result);
+        }.bind(this), function (error) {
+            Materialize.toast(error.message, 4000);
+        });
     }.bind(this);
 
     this.updateMonthYear = function () {
@@ -102,10 +114,6 @@ app.controller = function () {
         $("#dropdown1 li#" + this.calendar.getMonthName()).addClass("active");
         $("#dropdown2 li").removeClass("active");
         $("#dropdown2 li#" + this.calendar.getYear()).addClass("active");
-    }.bind(this);
-
-    this.showMonth = function (item) {
-      this.calendar.gotoMonth(item, this.calendar.getYear(), this.updateMonthYear())
     }.bind(this);
 }
 

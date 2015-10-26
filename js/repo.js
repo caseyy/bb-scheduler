@@ -5,7 +5,7 @@ repo.view = function (ctrl) {
         m(".collection-header", "Choose calendar"),
         ctrl.repos.map(function (item) {
             if (item.name.substring(item.name.lastIndexOf(".")) == ".cw")
-                return m("a.collection-item", { href: "javascript:void(0)" }, item.name);
+                return m("a.collection-item", { href: "javascript:void(0)", onclick: function () { setRepo(item); } }, item.name);
         })
     ]);
 }
