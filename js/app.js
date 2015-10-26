@@ -60,8 +60,11 @@ app.controller = function () {
                 this.user = result;
                 this.getRepos();
             }
-            else
+            else {
+                this.token = null;
+                localStorage.removeItem("token");
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
+            }
         }, function (error) {
             if (error.message == "Bad credentials")
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
