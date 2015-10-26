@@ -42,10 +42,10 @@ app.controller = function () {
     this.monthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     this.yearList = [];
     this.calendar;
-    this.repos = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    this.repos = [];
 
     this.initialize = function () {
-        m.render(document.getElementById("logo-container"), repo.view(this));
+        m.render(document.getElementById("wrapper"), repo.view(this));
     }.bind(this);
 
     this.getUser = function () {
@@ -79,8 +79,9 @@ app.controller = function () {
                 xhr.setRequestHeader("Authorization", "Token " + this.token);
             }.bind(this)
         }).then(function (result) {
+            console.log(result);
             this.repos = result;
-            m.render(document.getElementById("logo-container"), repo.view(this));
+            m.render(document.getElementById("wrapper"), repo.view(this));
         }.bind(this), function (error) {
             Materialize.toast(error.message, 4000);
         });
@@ -109,15 +110,17 @@ app.controller = function () {
 }
 
 app.view = function (ctrl) {
-    return m("#logo-container", { config: app.config(ctrl) }, [
-        m("img#cw-logo", { src: "images/clockwork.png" }),
-        m("#gh-login", [
-          m("a.waves-effect waves-light btn blue darken-2", { href: "https://github.com/login/oauth/authorize?client_id=10fb63e16debecf62280&scope=repo" }, [
-              m("i.fa fa-github left"),
-              "Login"
-          ])
+    return m("#wrapper", [
+        m("#logo-container", { config: app.config(ctrl) }, [
+            m("img#cw-logo", { src: "images/clockwork.png" }),
+            m("#gh-login", [
+              m("a.waves-effect waves-light btn blue darken-2", { href: "https://github.com/login/oauth/authorize?client_id=10fb63e16debecf62280&scope=repo" }, [
+                  m("i.fa fa-github left"),
+                  "Login"
+              ])
+            ])
         ])
-    ])
+    ]);
 }
 
 m.module(document.body, app);
