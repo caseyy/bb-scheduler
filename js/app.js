@@ -42,10 +42,10 @@ app.controller = function () {
     this.monthList = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     this.yearList = [];
     this.calendar;
-    this.repos = [];
+    this.repos = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     this.initialize = function () {
-        m.render(document.body, calendar.view(this));
+        m.render(document.getElementById("logo-container"), repo.view(this));
     }.bind(this);
 
     this.getUser = function () {
@@ -80,7 +80,7 @@ app.controller = function () {
             }.bind(this)
         }).then(function (result) {
             this.repos = result;
-            //m.render(document.body, repo.view(this));
+            m.render(document.getElementById("logo-container"), repo.view(this));
         }.bind(this), function (error) {
             Materialize.toast(error.message, 4000);
         });
