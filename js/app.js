@@ -18,7 +18,6 @@ app.config = function (ctrl) {
             }
             else if (code) {
                 $.getJSON('https://clockworkapp.azurewebsites.net/authenticate/'+code, function(data) {
-                  console.log(data);
                     if (data.token) {
                         ctrl.token = data.token;
                         localStorage.setItem("token", data.token);
@@ -44,6 +43,7 @@ app.controller = function () {
     this.yearList = [];
     this.calendar;
     this.repos = [];
+
     this.initialize = function () {
         m.render(document.body, calendar.view(this));
     }.bind(this);
@@ -56,7 +56,6 @@ app.controller = function () {
                 xhr.setRequestHeader("Authorization", "Token " + this.token);
             }.bind(this)
         }).then(function (result) {
-          console.log(result);
             if (result.login) {
                 this.user = result;
                 this.getRepos();
