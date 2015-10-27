@@ -122,7 +122,7 @@ app.controller = function () {
 
     this.setRepo = function(item) {
         this.repo = item;
-        this.getCommits();
+        this.initialize();
     }.bind(this);
 
     this.getCommits = function () {
@@ -149,7 +149,7 @@ app.controller = function () {
                     }
                 });
             }
-            this.initialize();
+            this.updateEvents();
         }.bind(this), function (error) {
             $(".progress").css("display", "none");
             Materialize.toast(error.message, 4000);
@@ -164,7 +164,7 @@ app.controller = function () {
         $("#dropdown1 li#" + this.calendar.getMonthName()).addClass("active");
         $("#dropdown2 li").removeClass("active");
         $("#dropdown2 li#" + this.calendar.getYear()).addClass("active");
-        this.getCommits().then(this.updateEvents);
+        this.getCommits();
     }.bind(this);
 
     this.updateEvents = function () {
