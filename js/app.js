@@ -8,9 +8,8 @@ app.config = function (ctrl) {
             var today = new Date();
             for (var i = 0; i < 5; i++)
               ctrl.yearList.push(today.getFullYear() + i);
-//ctrl.openModal();
-ctrl.initialize();
-            /*var code = null;
+
+            var code = null;
             if (window.location.href.match(/\?code=(.*)/)) {
                 code = window.location.href.match(/\?code=(.*)/)[1];
                 var url = window.location.href;
@@ -37,7 +36,7 @@ ctrl.initialize();
             else {
                 $("#gh-login").css("display", "block");
                 $("#gh-login").transition({ opacity: 1, delay: 1000 });
-            }*/
+            }
         }
     }
 }
@@ -127,7 +126,6 @@ app.controller = function () {
     }.bind(this);
 
     this.getCommits = function () {
-        console.log(this.repo);
         m.request({
             method: "GET",
             url: "https://api.github.com/repos/" + this.repo.owner.login + "/" + this.repo.name + "/commits",
