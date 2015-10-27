@@ -61,6 +61,7 @@ app.controller = function () {
     this.popover = m.prop(false);
     this.modalVisible = false;
     this.commits = [];
+    this.master;
 
     this.initialize = function () {
         m.render(document.getElementById("wrapper"), clockwork.view(this));
@@ -247,7 +248,47 @@ app.controller = function () {
     }.bind(this);
 
     this.saveEvent = function () {
-        console.log(this.event.start());
+      $(".progress").css("display", "block");
+      this.getMaster();
+    }.bind(this);
+
+    this.getMaster = function () {
+      m.request({
+          method: "GET",
+          url: "https://api.github.com/repos/" + this.repo.owner.login + "/" + this.repo.name + "//git/refs/heads/master",
+          config: function (xhr, options) {
+              xhr.setRequestHeader("Authorization", "Token " + this.token);
+          }.bind(this)
+      }).then(function (result) {
+          this.master = result;
+          this.createCommit();
+      }.bind(this), function (error) {
+          $(".progress").css("display", "none");
+          Materialize.toast(error.message, 4000);
+      });
+    }.bind(this);
+
+    this.createCommit = function () {
+      m.request({
+          method: "POST",
+          url: "https://api.github.com/repos/" + this.repo.owner.login + "/" + this.repo.name + "/commits",
+          data: {
+            message: this.event.type,
+            tree: this.master.object.sha,
+            parents: [],
+            name: this.user.name,
+            email: this.user.email,
+            date: $.format.date(this.event.start, "yyyy-MM-ddTHH:mm:ssZ")
+          },
+          config: function (xhr, options) {
+              xhr.setRequestHeader("Authorization", "Token " + this.token);
+          }.bind(this)
+      }).then(function (result) {
+          $(".progress").css("display", "none");
+      }.bind(this), function (error) {
+          $(".progress").css("display", "none");
+          Materialize.toast(error.message, 4000);
+      });
     }.bind(this);
 }
 
