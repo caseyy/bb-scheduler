@@ -2212,7 +2212,7 @@ thead {
   border-bottom: 1px solid #d0d0d0; }
 
 td, th {
-  padding: 15px 5px;
+  padding: 5px 5px;
   display: table-cell;
   text-align: left;
   vertical-align: middle;
@@ -2390,7 +2390,7 @@ nav ul a span.badge {
   height: 4px;
   display: block;
   width: 100%;
-  background-color: #acece6;
+  background-color: #1976d2;
   border-radius: 2px;
   margin: 0.5rem 0 1rem 0;
   overflow: hidden; }
@@ -2400,14 +2400,14 @@ nav ul a span.badge {
     top: 0;
     left: 0;
     bottom: 0;
-    background-color: #26a69a;
+    background-color: #1976d2;
     -webkit-transition: width .3s linear;
     -moz-transition: width .3s linear;
     -o-transition: width .3s linear;
     -ms-transition: width .3s linear;
     transition: width .3s linear; }
   .progress .indeterminate {
-    background-color: #26a69a; }
+    background-color: #82b1ff; }
     .progress .indeterminate:before {
       content: '';
       position: absolute;
@@ -6087,7 +6087,7 @@ a.waves-effect .waves-ripple {
 
 .modal.modal-fixed-footer {
   padding: 0;
-  height: 70%; }
+  height: 80%; }
   .modal.modal-fixed-footer .modal-content {
     position: absolute;
     height: calc(100% - 56px);
@@ -6173,14 +6173,15 @@ a.waves-effect .waves-ripple {
 
 .chip {
   display: inline-block;
-  height: 32px;
-  font-size: 13px;
+  height: 22px;
+  font-size: 11px;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.6);
-  line-height: 32px;
-  padding: 0 12px;
+  color: #fff;
+  line-height: 22px;
+  padding: 0px 8px;
+  margin-bottom: 4px;
   border-radius: 16px;
-  background-color: #E4E4E4; }
+  background-color: #1976d2; }
   .chip img {
     float: left;
     margin: 0 8px 0 -12px;
@@ -6190,8 +6191,8 @@ a.waves-effect .waves-ripple {
   .chip i.material-icons {
     cursor: pointer;
     float: right;
-    font-size: 16px;
-    line-height: 32px;
+    font-size: 11px;
+    line-height: 22px;
     padding-left: 8px; }
 
 .materialboxed {
@@ -6266,7 +6267,7 @@ label {
 input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea {
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #9e9e9e;
+  border-bottom: 1px solid #1976d2;
   border-radius: 0;
   outline: none;
   height: 3rem;
@@ -7865,7 +7866,7 @@ select {
  */
 .picker__day--today {
   position: relative;
-  color: #595959;
+  color: #1976d2;
   letter-spacing: -.3;
   padding: .75rem 0;
   font-weight: 400;
@@ -7899,7 +7900,7 @@ select {
   -ms-transform: scale(.75);
   -o-transform: scale(.75);
   transform: scale(.75);
-  background: #0089ec;
+  background: #1976d2;
   color: #ffffff; }
 
 .picker__day--disabled, .picker__day--disabled:hover, .picker--focused .picker__day--disabled {
@@ -7987,15 +7988,15 @@ select {
 
 .picker__date-display {
   text-align: center;
-  background-color: #26a69a;
+  background-color: #1976d2;
   color: #fff;
   padding-bottom: 15px;
   font-weight: 300; }
 
 .picker__nav--prev:hover, .picker__nav--next:hover {
   cursor: pointer;
-  color: #000000;
-  background: #a1ded8; }
+  color: #1976d2;
+  background: #eee; }
 
 .picker__weekday-display {
   background-color: #1f897f;
@@ -8037,7 +8038,7 @@ select {
   border: 1px solid transparent; }
 
 .picker__day.picker__day--today {
-  color: #26a69a; }
+  color: #1976d2; }
 
 .picker__day.picker__day--today.picker__day--selected {
   color: #fff; }
@@ -8052,7 +8053,7 @@ select {
   -ms-transform: scale(.9);
   -o-transform: scale(.9);
   transform: scale(.9);
-  background-color: #26a69a;
+  background-color: #1976d2;
   color: #ffffff; }
   .picker__day--selected.picker__day--outfocus, .picker__day--selected:hover.picker__day--outfocus, .picker--focused .picker__day--selected.picker__day--outfocus {
     background-color: #a1ded8; }
@@ -8064,7 +8065,7 @@ select {
 .picker__close, .picker__today {
   font-size: 1.1rem;
   padding: 0 1rem;
-  color: #26a69a; }
+  color: #1976d2; }
 
 .picker__nav--prev:before, .picker__nav--next:before {
   content: " ";
@@ -8081,7 +8082,7 @@ select {
   border-left: 0.75em solid #676767; }
 
 button.picker__today:focus, button.picker__clear:focus, button.picker__close:focus {
-  background-color: #a1ded8; }
+  background-color: #eee; }
 
 /* ==========================================================================
    $BASE-TIME-PICKER

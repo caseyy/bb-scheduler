@@ -646,7 +646,7 @@ else {
         ready: undefined,
         complete: undefined,
         dismissible: true,
-        starting_top: '4%'
+        starting_top: '3px'
       },
       overlayID = _generateID(),
       $modal = $(this),
@@ -690,7 +690,7 @@ else {
 
       // Define Bottom Sheet animation
       if ($modal.hasClass('bottom-sheet')) {
-        $modal.velocity({bottom: "0", opacity: 1}, {
+        $modal.velocity({bottom: "3px", opacity: 1}, {
           duration: options.in_duration,
           queue: false,
           ease: "easeOutCubic",
@@ -705,7 +705,7 @@ else {
       else {
         $.Velocity.hook($modal, "scaleX", 0.7);
         $modal.css({ top: options.starting_top });
-        $modal.velocity({top: "10%", opacity: 1, scaleX: '1'}, {
+        $modal.velocity({top: "3px", opacity: 1, scaleX: '1'}, {
           duration: options.in_duration,
           queue: false,
           ease: "easeOutCubic",
