@@ -127,9 +127,15 @@ app.controller = function () {
     }.bind(this);
 
     this.getCommits = function () {
+        var since = new Date(this.calendar.getYear() + "-" + this.calendar.getMonth() + "-01T00:00:00Z");
+        var until = new Date().setTime(since.getTime() + 2678400000);
         m.request({
             method: "GET",
             url: "https://api.github.com/repos/" + this.repo.owner.login + "/" + this.repo.name + "/commits",
+            data: {
+              since: since.toISOString(),
+              until: until.toISOString()
+            },
             config: function (xhr, options) {
                 xhr.setRequestHeader("Authorization", "Token " + this.token);
             }.bind(this)
@@ -271,7 +277,7 @@ app.controller = function () {
     this.createCommit = function () {
       m.request({
           method: "POST",
-          url: "https://api.github.com/repos/" + this.repo.owner.login + "/" + this.repo.name + "/commits",
+          url: "https://api.github.com/repos/" + this.repo.owner.login + "/" + this.repo.name + "/git/commits",
           data: {
             message: this.event.type(),
             tree: this.master.object.sha,
