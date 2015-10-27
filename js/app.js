@@ -127,6 +127,7 @@ app.controller = function () {
     }.bind(this);
 
     this.getCommits = function () {
+        console.log(this.repo);
         m.request({
             method: "GET",
             url: "https://api.github.com/repos/" + this.repo.owner.login + "/" + this.repo.name + "/commits",
