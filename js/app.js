@@ -255,7 +255,7 @@ app.controller = function () {
     this.getMaster = function () {
       m.request({
           method: "GET",
-          url: "https://api.github.com/repos/" + this.repo.owner.login + "/" + this.repo.name + "//git/refs/heads/master",
+          url: "https://api.github.com/repos/" + this.repo.owner.login + "/" + this.repo.name + "/git/refs/heads/master",
           config: function (xhr, options) {
               xhr.setRequestHeader("Authorization", "Token " + this.token);
           }.bind(this)
