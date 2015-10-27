@@ -273,12 +273,12 @@ app.controller = function () {
           method: "POST",
           url: "https://api.github.com/repos/" + this.repo.owner.login + "/" + this.repo.name + "/commits",
           data: {
-            message: this.event.type,
+            message: this.event.type(),
             tree: this.master.object.sha,
             parents: [],
             name: this.user.name,
             email: this.user.email,
-            date: $.format.date(this.event.start, "yyyy-MM-ddTHH:mm:ssZ")
+            date: $.format.date(this.event.start(), "yyyy-MM-ddTHH:mm:ssZ")
           },
           config: function (xhr, options) {
               xhr.setRequestHeader("Authorization", "Token " + this.token);
